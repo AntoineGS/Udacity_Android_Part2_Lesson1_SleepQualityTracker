@@ -30,6 +30,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -42,7 +43,6 @@ android {
     buildFeatures {
         dataBinding true
     }
-
 }
 
 dependencies {
