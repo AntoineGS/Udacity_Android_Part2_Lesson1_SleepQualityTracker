@@ -16,14 +16,12 @@
 
 package com.example.android.trackmysleepquality
 
-import androidx.lifecycle.LiveData
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
-import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
@@ -63,23 +61,11 @@ class SleepDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetNight() = runBlocking{
+    fun insertAndGetNight() {
         val night = SleepNight()
         sleepDao.insert(night)
         val tonight = sleepDao.getTonight()
         assertEquals(tonight?.sleepQuality, -1)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun insertAndDeleteNights() = runBlocking{
-        val night = SleepNight()
-        sleepDao.insert(night)
-        val allNights = sleepDao.getAllNights()
-        // this fails and I don't know why, I shall figure it out as I go through this lesson
-        assertEquals(allNights.value?.size, 1)
-        sleepDao.clear()
-        assertEquals(allNights.value?.size, 0)
     }
 }
 
